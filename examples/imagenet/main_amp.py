@@ -144,7 +144,8 @@ def main():
         print("using apex synced BN")
         model = apex.parallel.convert_syncbn_model(model)
 
-    model = model.cuda().to(memory_format=memory_format)
+    #model = model.cuda().to(memory_format=memory_format)
+    model = model.cuda()
 
     # Scale learning rate based on global batch size
     args.lr = args.lr*float(args.batch_size*args.world_size)/256.
